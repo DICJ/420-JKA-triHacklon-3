@@ -189,15 +189,6 @@ namespace Trihacklon3
             Console.WriteLine($"\nSa densité est de {Math.Round(CalculatriceMatrices.Densite(m) * 100)}%.");
             Console.WriteLine("\nSa transpose");
             ImprimerMatrice(CalculatriceMatrices.Transpose(m));
-
-            if (CalculatriceMatrices.Labyrinthe(m, 0, 0))
-            {
-                CalculatriceMatrices.Labyrinthe(m, 0, 0, 1);
-                Console.WriteLine("\nC'est un labyrinthe");
-                Console.WriteLine("Solution : ");
-                ImprimerMatrice(m);
-                ImprimerLabyrhinthe(m);
-            }
         }
 
         /// <summary>
