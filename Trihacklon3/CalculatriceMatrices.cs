@@ -18,7 +18,7 @@ namespace Trihacklon3
         /// <returns>Un tableau contenant les cases de la matrices, en zig zag descendant, à partir du coin supérieur gauche</returns>
         public static int[] ZigzagHorizontal(int[,] m)
         {
-            return new int[0];
+            return [];
         }
         /// <summary>
         /// Parcourt la matrice dans l'ordre des diagonales descendantes
@@ -30,7 +30,7 @@ namespace Trihacklon3
         /// <returns>Un tableau contenant les cases de la matrices, dans l'ordre des diagonales descendantes</returns>
         public static int[] DiagonalesDescendantes(int[,] m)
         {
-            return new int[0];
+            return [];
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Trihacklon3
         /// <returns>Un tableau contenant les cases de la matrices, dans l'ordre des diagonales montantes</returns>
         public static int[] DiagonalesMontantes(int[,] m)
         {
-            return new int[0];
+            return [];
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Trihacklon3
         /// <returns>Un tableau contenant les cases de la matrices, dans l'ordre de la queue de colombe</returns>
         public static int[] QueueDeColombe(int[,] m)
         {
-            return new int[0];
+            return [];
         }
         /// <summary>
         /// Parcourt la matrice en spirale
@@ -68,7 +68,7 @@ namespace Trihacklon3
         /// <returns>Un tableau contenant les cases de la matrices en spirale</returns>
         public static int[] Spirale(int[,] m)
         {
-            return new int[0];
+            return [];
         }
 
         /// <summary>

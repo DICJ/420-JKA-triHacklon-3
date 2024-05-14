@@ -1,8 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace Trihacklon3
 {
-    public class Program
+    public partial class Program
     {
         private const char QUIT = 'Q';
         /// <summary>
@@ -117,9 +118,9 @@ namespace Trihacklon3
         /// <returns>La matrice décrite par la chaîne. Nul si la chaîne ne représente pas une matrice d'entiers</returns>
         static int[,] Decortiquer(string entree)
         {
-            Regex rx = new Regex(@"^(( *-?\d)+;)+$");
+            Regex rx = NbEntierRegex();
             if (!rx.IsMatch(entree))
-                return null;
+                throw new ArgumentException($"La chaîne {entree} n'est pas une matrice");
             string[] lignes = entree.Split(";", StringSplitOptions.RemoveEmptyEntries);
             string[] colonnes = lignes[0].Split(" ");
             int nbColonnes = colonnes.Length;
@@ -129,7 +130,7 @@ namespace Trihacklon3
             {
                 colonnes = lignes[i].Split(" ");
                 if (colonnes.Length != nbColonnes)
-                    return null;
+                    throw new ArgumentException($"La chaîne {entree} n'est pas une matrice");
                 for (int j = 0; j < nbColonnes; j++)
                     m[i, j] = int.Parse(colonnes[j]);
             }
@@ -147,7 +148,7 @@ namespace Trihacklon3
             string next;
             do
             {
-                next = Console.ReadLine().Trim();
+                next = (Console.ReadLine() ?? string.Empty).Trim();
                 if (next != "")
                     entree += next + ";";
             } while (next != "");
@@ -194,20 +195,27 @@ namespace Trihacklon3
         /// <summary>
         /// Affiche des caractéristiques de matrices entrées par l'utilisateur
         /// </summary>
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
             do
             {
                 Console.Clear();
                 Console.WriteLine($"Entrez une matrice ligne par ligne.");
                 Console.WriteLine($"Séparez les cases par des espaces. Pour terminer, entrez une ligne vide.");
-                int[,] m = LireMatrice();
-                if (m != null)
+                try
+                {
+                    int[,] m = LireMatrice();
                     ImprimerCaracteristiquesMatrices(m);
-                else
-                    Console.WriteLine("Ceci n'est pas une matrice d'entier valide.");
+                }
+                catch (ArgumentException ae)
+                {
+                    Console.WriteLine(ae.Message);
+                }
                 Console.WriteLine($"\n\nAppuyez sur une touche pour continuer. Pour quitter, entrez '{QUIT}'\n");
             } while (Console.ReadKey().KeyChar != QUIT);
         }
+
+        [GeneratedRegex(@"^(( *-?\d)+;)+$")]
+        private static partial Regex NbEntierRegex();
     }
 }
